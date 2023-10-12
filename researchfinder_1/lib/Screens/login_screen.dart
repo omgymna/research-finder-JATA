@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
             data: ThemeData(unselectedWidgetColor: Colors.white),
             child: Checkbox(
               value: _rememberMe,
-              checkColor: Colors.green,
+              checkColor: Color(0xFF56674A),
               activeColor: Colors.white,
               onChanged: (value) {
                 setState(() {
@@ -128,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
-          ), backgroundColor: Color(0xFFA89F91),
+          ), backgroundColor: Color(0xFFC2BEB4),
           elevation: 5.0,
         ).copyWith(
           padding: MaterialStateProperty.all(EdgeInsets.all(15.0)),
@@ -188,7 +188,7 @@ Widget build(BuildContext context) {
               height: double.infinity,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.brown,
+                color: Color(0xFFA18C74),  // Here's the updated color code.
               ),
             ),
             Container(
