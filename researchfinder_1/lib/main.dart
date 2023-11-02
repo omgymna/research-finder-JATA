@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:researchfinder_1/login_screen.dart';
 
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
