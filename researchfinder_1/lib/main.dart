@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:researchfinder_1/screens/login_screen.dart';
+import 'package:researchfinder_1/login_screen.dart';
 
 void main() => runApp(MyApp());
 
