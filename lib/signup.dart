@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:capstone/accouninfo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -194,42 +196,47 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildSignUpBtn() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          // Navigate to the Account Info page
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SignUpRolePicker(), // Replace with your Account Info page class
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30.0),
-          ),
-          primary: Color(0xFFC2BEB4), // Button color
-          elevation: 5.0,
-        ).copyWith(
-          padding: MaterialStateProperty.all(EdgeInsets.all(15.0)),
-        ),
-        child: Text(
-          'SIGN UP',
-          style: TextStyle(
-            color: Colors.white,
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
-        ),
+ Widget _buildSignUpBtn(BuildContext context) {
+  void signUpAndNavigate() {
+    print('Function is executed');
+    // Perform any signup logic here (e.g., validating user input, creating an account).
+
+    // Navigate to the Account Info page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SignUpRolePicker(), // Replace with your Account Info page class
       ),
     );
   }
+
+  return Container(
+    padding: EdgeInsets.symmetric(vertical: 25.0),
+    width: double.infinity,
+    child: ElevatedButton(
+      onPressed: signUpAndNavigate, // Call the combined function
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        primary: Color(0xFFC2BEB4), // Button color
+        elevation: 5.0,
+      ).copyWith(
+        padding: MaterialStateProperty.all(EdgeInsets.all(15.0)),
+      ),
+      child: Text(
+        'SIGN UP',
+        style: TextStyle(
+          color: Colors.white,
+          letterSpacing: 1.5,
+          fontSize: 18.0,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'OpenSans',
+        ),
+      ),
+    ),
+  );
+}
 
 
   @override
@@ -273,7 +280,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       _buildEmailTF(),
                       _buildPasswordTF(),
                       _buildConfirmPasswordTF(),
-                      _buildSignUpBtn(),
+                      _buildSignUpBtn(context),
 
                     ],
                   ),
@@ -286,6 +293,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
+
 
 
 
