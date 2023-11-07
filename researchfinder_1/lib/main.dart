@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'homepage.dart';
+import 'signup.dart';
 import 'login.dart';
 
 void main() {
@@ -27,7 +28,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
-    HomePage(), // Index 0: HomePage // Index 1: SignUPPage
+    HomePage(), // Index 0: HomePage
+    SignUpPage(), // Index 1: SignUPPage
     LoginScreen(), // Index 2: LoginScreen
   ];
 
