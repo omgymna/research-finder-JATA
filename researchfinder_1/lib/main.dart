@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:researchfinder_1/login_screen.dart';
+
 import 'package:researchfinder_1/selectUniversity.dart';
 
 void main() => runApp(MyApp());
@@ -9,12 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter DropDownButton',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: const MyHomePage(),
+      home: LoginScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
-
