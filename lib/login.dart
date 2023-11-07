@@ -1,20 +1,44 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:capstone/WelcomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:capstone/signup.dart';
-import 'constants.dart'; // Import the constants file
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'constants.dart';
 
 
 //update
 class LoginScreen extends StatefulWidget {
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _rememberMe = false;
- 
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  Future login() async {
+  var url = Uri.parse("http://localhost/RF_localconnect/logindb.php");
+  var response = await http.post(url, body: { 
+    "email": email.text,
+    "password": password.text, 
+  });
+
+  var data = json.decode(response.body);
+  if (data == "success") {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => WelcomePage())); // Make sure WelcomePage is a valid widget
+  }
+  else{
+    Fluttertoast.showToast()
+  }
+}
+
+
   Widget _buildEmailTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: email,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.white,
@@ -59,6 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: password,
             obscureText: true,
             style: TextStyle(
               color: Colors.white,
@@ -124,33 +150,37 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildLoginBtn() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () => print('Login Button Pressed'),
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30.0),
-          ), backgroundColor: Color(0xFFC2BEB4),
-          elevation: 5.0,
-        ).copyWith(
-          padding: MaterialStateProperty.all(EdgeInsets.all(15.0)),
+  Widget _buildLoginBtn(BuildContext context) {
+  return Container(
+    padding: EdgeInsets.symmetric(vertical: 25.0),
+    width: double.infinity,
+    child: ElevatedButton(
+      onPressed: () {
+         login();
+      },
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
         ),
-        child: Text(
-          'LOGIN',
-          style: TextStyle(
-            color: Colors.white,
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
+        backgroundColor: Color(0xFFC2BEB4),
+        elevation: 5.0,
+      ).copyWith(
+        padding: MaterialStateProperty.all(EdgeInsets.all(15.0)),
+      ),
+      child: Text(
+        'LOGIN',
+        style: TextStyle(
+          color: Colors.white,
+          letterSpacing: 1.5,
+          fontSize: 18.0,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'OpenSans',
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
 
   Widget _buildSignupBtn(BuildContext context) {
   return GestureDetector(
@@ -232,7 +262,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       _buildPasswordTF(),
                       _buildForgotPasswordBtn(),
                       _buildRememberMeCheckbox(),
-                      _buildLoginBtn(),
+                      _buildLoginBtn(context),
                       _buildSignupBtn(context),
                     ],
                   ),
