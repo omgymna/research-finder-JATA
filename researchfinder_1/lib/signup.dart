@@ -1,6 +1,6 @@
-import 'package:capstone/accouninfo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:research_finder_jata/accountinfo.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -286,6 +286,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
+
 
 
 

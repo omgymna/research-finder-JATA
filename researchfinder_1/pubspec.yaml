@@ -1,4 +1,5 @@
-name: researchfinder_1
+name: research_finder_jata
+
 description: testing out capstone Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -26,3 +27,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/welcome1.png
