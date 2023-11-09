@@ -1,26 +1,19 @@
-/*
-testing api with this- currently can use a placeholder json API but wont load a regular api
 
-import 'dart:convert';
+//testing api with this- currently can use a placeholder json API but wont load a regular api
 
 import 'package:flutter/material.dart';
+import 'package:researchfinder_1/addCourse.dart';
 import 'package:researchfinder_1/selectUniversity.dart';
 import 'package:http/http.dart' as http;
 
 void main(){
    runApp(MaterialApp(
-    title: 'Flutter DropDownButton',
+    title: 'Add Your Courses',
     debugShowCheckedModeBanner: false,
-    home: MyApp()
+    home: AddCoursePage()
     
    ));
    }
-
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-  // This widget is the root of your application.
-  @override
-  State<MyApp> createState() => _MyAppState();
 
 
   /*Widget build(BuildContext context) {
@@ -30,7 +23,7 @@ class MyApp extends StatefulWidget {
       
     );
   }*/
-}
+
 
 
 /*class _MyAppState extends State<MyApp> {
@@ -64,4 +57,3 @@ class MyApp extends StatefulWidget {
     );
   }
 }*/
-*/
