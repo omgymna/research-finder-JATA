@@ -13,6 +13,7 @@ class _AddCoursePageState extends State<AddCoursePage>{
   bool selected = false;
 
   List<String> courses= [];
+
   TextEditingController _controller = TextEditingController();
 
   Widget build(BuildContext context) {
@@ -31,6 +32,8 @@ class _AddCoursePageState extends State<AddCoursePage>{
                   color: Colors.brown,
                   fontFamily: 'OpenSans',
                   fontSize: 30,
+
+
                 ),
               ),
             ),
@@ -38,6 +41,7 @@ class _AddCoursePageState extends State<AddCoursePage>{
 
             Container(
               alignment: Alignment.center,
+
               margin: EdgeInsets.only(left:200, right: 200, bottom: 25),
               decoration: BoxDecoration(
                 color: Color.fromARGB(173, 161, 140, 116),
@@ -47,6 +51,7 @@ class _AddCoursePageState extends State<AddCoursePage>{
               child: TextFormField(
                 textAlign: TextAlign.center,
                 style: TextStyle( color: Colors.white, fontSize: 30, fontFamily: 'OpenSans'),
+
               controller: _controller,
 
             )),
@@ -56,6 +61,7 @@ class _AddCoursePageState extends State<AddCoursePage>{
               margin: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 
+
                 color: Color(0xFF56674A),
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -90,7 +96,6 @@ class _AddCoursePageState extends State<AddCoursePage>{
               decoration: BoxDecoration(
                 color: Color.fromARGB(166, 194, 190, 180),
                 borderRadius: BorderRadius.circular(5)
-
               ),
               child:Text(courses.isNotEmpty?courses.toString():"",
                   style: TextStyle(
