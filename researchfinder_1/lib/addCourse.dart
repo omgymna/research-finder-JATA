@@ -12,24 +12,28 @@ _AddCoursePageState createState() => _AddCoursePageState();
 class _AddCoursePageState extends State<AddCoursePage>{
   bool selected = false;
 
-  List<String> text = [];
+  List<String> courses= [];
+
   TextEditingController _controller = TextEditingController();
 
   Widget build(BuildContext context) {
     return Scaffold(
       body: 
         Container(
-        decoration: BoxDecoration(color: Color(0xFF868174)),
+        decoration: BoxDecoration(color: Colors.white),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          //mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
-              color: Color(0xFFC2BEB4),
+              margin: EdgeInsets.all(75),
               child: Text(
                 "Add your courses below",
                 style: TextStyle(
+                  color: Colors.brown,
                   fontFamily: 'OpenSans',
-                  fontSize: 45,
+                  fontSize: 30,
+
+
                 ),
               ),
             ),
@@ -37,19 +41,17 @@ class _AddCoursePageState extends State<AddCoursePage>{
 
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left:200, right: 200, top:250, bottom: 25),
+
+              margin: EdgeInsets.only(left:200, right: 200, bottom: 25),
               decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(
-                  color: Colors.white,
-                  width: 2,
-                ),
+                color: Color.fromARGB(173, 161, 140, 116),
                 borderRadius: BorderRadius.circular(10),
               ),
               
               child: TextFormField(
                 textAlign: TextAlign.center,
-                style: TextStyle( color: Colors.brown, fontSize: 30, fontFamily: 'OpenSans'),
+                style: TextStyle( color: Colors.white, fontSize: 30, fontFamily: 'OpenSans'),
+
               controller: _controller,
 
             )),
@@ -59,11 +61,8 @@ class _AddCoursePageState extends State<AddCoursePage>{
               margin: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 
-                color: Colors.white, 
-                border: Border.all(
-                  color: Color(0xFF56674A),
-                  width: 2,
-                ),
+
+                color: Color(0xFF56674A),
                 borderRadius: BorderRadius.circular(10),
               ),
 
@@ -71,7 +70,7 @@ class _AddCoursePageState extends State<AddCoursePage>{
                 onPressed: () {
                   setState(() {
                     if(_controller.text.length>0){
-                      text.add(_controller.text);
+                      courses.add(_controller.text);
                       _controller.clear();
                     } else{
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -85,7 +84,7 @@ class _AddCoursePageState extends State<AddCoursePage>{
                 child: Text("Add Course",
                     style: TextStyle(
                       fontSize: 25,
-                      color: Color(0xFFA18C74),
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'OpenSans',
                     )
@@ -95,11 +94,10 @@ class _AddCoursePageState extends State<AddCoursePage>{
             Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Color(0xFFC2BEB4),
+                color: Color.fromARGB(166, 194, 190, 180),
                 borderRadius: BorderRadius.circular(5)
-
               ),
-              child:Text(text.isNotEmpty?text.toString():"",
+              child:Text(courses.isNotEmpty?courses.toString():"",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.normal,
