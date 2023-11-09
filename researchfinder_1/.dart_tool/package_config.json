@@ -182,13 +182,13 @@
       "languageVersion": "3.1"
     },
     {
-      "name": "researchfinder_1",
+      "name": "research_finder_jata",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-11-07T18:33:44.895248Z",
+  "generated": "2023-11-09T17:34:31.847224Z",
   "generator": "pub",
   "generatorVersion": "3.1.2"
 }
