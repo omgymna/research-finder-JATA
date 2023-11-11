@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
-import 'package:researchfinder_1/constants.dart';
+import 'constants.dart';
+import 'personalinfo.dart';
 
 class AddCoursePage extends StatefulWidget { 
 const AddCoursePage({Key? key}) : super(key: key); 
@@ -10,6 +11,18 @@ _AddCoursePageState createState() => _AddCoursePageState();
 } 
 
 class _AddCoursePageState extends State<AddCoursePage>{
+  
+  void _handleNextButtonClick() {
+    // Navigate to the PersonalInfoPage
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PersonalInfoPage(),
+      ),
+    );
+  }
+
+
   bool selected = false;
 
   List<String> courses= [];
@@ -18,6 +31,17 @@ class _AddCoursePageState extends State<AddCoursePage>{
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFFA18C74),
+        title: Text(
+                "Add your courses below",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'OpenSans',
+                  fontSize: 30,
+                ),
+              ),
+      ),
       body: 
         Container(
         decoration: BoxDecoration(color: Colors.white),
@@ -25,24 +49,9 @@ class _AddCoursePageState extends State<AddCoursePage>{
           //mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.all(75),
-              child: Text(
-                "Add your courses below",
-                style: TextStyle(
-                  color: Colors.brown,
-                  fontFamily: 'OpenSans',
-                  fontSize: 30,
-
-
-                ),
-              ),
-            ),
-
-
-            Container(
               alignment: Alignment.center,
 
-              margin: EdgeInsets.only(left:200, right: 200, bottom: 25),
+              margin: EdgeInsets.only(left:200, right: 200, bottom: 25, top: 200),
               decoration: BoxDecoration(
                 color: Color.fromARGB(173, 161, 140, 116),
                 borderRadius: BorderRadius.circular(10),
@@ -108,6 +117,13 @@ class _AddCoursePageState extends State<AddCoursePage>{
           ],
         ),
       ),
+      floatingActionButton: Align(
+        alignment: Alignment.bottomRight,
+        child: FloatingActionButton(
+          onPressed: _handleNextButtonClick,
+          backgroundColor: Color(0xFFA18C74),
+          child: Icon(Icons.arrow_forward),
+        )),
     );
   }
 }
