@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
+import 'package:research_finder_jata/addCourse.dart'; 
 //import 'package:dropdown_search/dropdown_search.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'dart:async';
+import 'personalinfo.dart';
+
+
 
 class SelectUniversityPage extends StatefulWidget { 
 const SelectUniversityPage({Key? key}) : super(key: key); 
@@ -12,6 +13,16 @@ _SelectUniversityPageState createState() => _SelectUniversityPageState();
 } 
 
 class _SelectUniversityPageState extends State<SelectUniversityPage> { 
+
+  void _handleNextButtonClick() {
+    // Navigate to the PersonalInfoPage
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AddCoursePage(),
+      ),
+    );
+  }
 	
 // Initial Selected Value 
 String university = 'Abiline Christian University'; 
@@ -53,7 +64,7 @@ var universities = [
 Widget build(BuildContext context) { 
 	return Scaffold( 
 	appBar: AppBar(     
-		title: const Text("Select your university"), 
+		title: const Text("Select your university"),
 	), 
 	body: Center( 
 		child: Column( 
@@ -84,7 +95,15 @@ Widget build(BuildContext context) {
 			), 
 		], 
 		), 
-	), 
+	),
+  floatingActionButton: Align(
+        alignment: Alignment.bottomRight,
+        child: FloatingActionButton(
+          onPressed: _handleNextButtonClick,
+          backgroundColor: Color(0xFFA18C74),
+          child: Icon(Icons.arrow_forward),
+        )),
+
 	); 
 } 
 } 

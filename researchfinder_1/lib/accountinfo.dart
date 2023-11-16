@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:research_finder_jata/addCourse.dart';
+import 'package:research_finder_jata/selectUniversity.dart';
 import 'personalinfo.dart'; // Import the PersonalInfoPage
 
 enum SignUpRole { student, faculty }
@@ -17,7 +18,7 @@ class _SignUpRolePickerState extends State<SignUpRolePicker> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => AddCoursePage(),
+        builder: (context) => SelectUniversityPage(),
         //builder: (context) => PersonalInfoPage(),
       ),
     );
