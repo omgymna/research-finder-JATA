@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 import 'constants.dart';
-import 'personalinfo.dart';
+import 'homescreen.dart';
 
 class AddCoursePage extends StatefulWidget { 
 const AddCoursePage({Key? key}) : super(key: key); 
@@ -17,7 +17,7 @@ class _AddCoursePageState extends State<AddCoursePage>{
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => PersonalInfoPage(),
+        builder: (context) => Homescreen(),
       ),
     );
   }

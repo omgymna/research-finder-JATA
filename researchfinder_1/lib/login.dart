@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'constants.dart'; // Import the constants file
-
+import 'homescreen.dart';
 //update
 class LoginScreen extends StatefulWidget {
   @override
@@ -125,7 +125,13 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () => print('Login Button Pressed'),
+        onPressed: (){
+        // Navigate to the home screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Homescreen()), // Use Homescreen class
+        );
+      },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
