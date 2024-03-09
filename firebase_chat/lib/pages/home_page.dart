@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_chat/pages/chat_page.dart';
 import 'package:firebase_chat/pages/inbox_page.dart';
+import 'package:firebase_chat/pages/personal_info_page.dart';
 import 'package:firebase_chat/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     PlaceholderWidget('Home Page'),
     PlaceholderWidget('Search Page'),
     InboxPage(),
-    SignUpRolePicker(),
+    ProfilePage(),
   ];
 
   @override
@@ -82,50 +83,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  //build a list of users except for current logged in user
-
-  Widget _buildUserList(){
-    return StreamBuilder<QuerySnapshot>(stream: FirebaseFirestore.instance.collection('users').snapshots(),
-     builder: (context, snapshot) {
-       if(snapshot.hasError){
-        return const Text('error');
-       }
-       if(snapshot.connectionState == ConnectionState.waiting){
-        return const Text('loading...');
-       }
-
-       return ListView(
-        children: snapshot.data!.docs.map<Widget>((doc) => _buildUserListItem(doc))
-        .toList(),
-       );
-     },
-    );
-  }
-
-  //build individual list items
-  Widget _buildUserListItem(DocumentSnapshot document){
-    Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-
-    //display all users but current user
-    if(_auth.currentUser!.email != data['email']){
-      return ListTile(
-        title: Text(data['email'],),
-        onTap: (){
-          //pass the clicked user's UID to the chat page
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> ChatPage(
-            receiverUserEmail: data['email'],
-            receiverUserID: data['uid'],
-          ),
-          ),
-          );
-        },
-      );
-    }
-    else{
-      //return empty container
-      return Container();
-    }
-  }
 }
 
 class PlaceholderWidget extends StatelessWidget {

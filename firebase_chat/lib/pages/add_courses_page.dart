@@ -19,7 +19,7 @@ class _AddCoursePageState extends State<AddCoursePage>{
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => PersonalInfoPage(),
+        builder: (context) => ProfilePage(),
       ),
     );
   }

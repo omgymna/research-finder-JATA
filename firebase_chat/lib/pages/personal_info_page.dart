@@ -1,87 +1,116 @@
 import 'package:flutter/material.dart';
 
-class PersonalInfoPage extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+      child: Column(
+        children: <Widget>[
+          const SizedBox(height: 24),
+          CircleAvatar(
+            radius: 50,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'John Do',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          Text(
+            'University of North Texas',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          Text(
+            'Bachelors, Computer Science',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          Text(
+            'Graduates May 2024',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          const Divider(),
+           Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CircleAvatar(
-                  backgroundColor: Color.fromARGB(177, 240, 209, 171),
-                  radius: 80,
-                  child: Text(
-                    "Photo",
-                    style: TextStyle(color: Colors.white, fontSize: 24),
-                  ),
+                Text(
+                  'My Journey',
+                  style: Theme.of(context).textTheme.headline5,
                 ),
-                SizedBox(width: 20.0),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Name: John Doe',
-                      style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Gender: Male',
-                      style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () {
+                    // TODO: Implement navigation to the edit page or display an inline text field for editing
+                  },
                 ),
               ],
             ),
-            SizedBox(height: 30.0),
-            Text(
-              'University:',
-              style: TextStyle(fontSize: 18.0),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'filler text',
+              style: Theme.of(context).textTheme.bodyMedium,
+              textAlign: TextAlign.justify,
             ),
-            Container(
-              margin: EdgeInsets.only(top: 10),
-              height: 50,
-              decoration: BoxDecoration(
-                color: Color(0x9BAA79FF),
-              ),
-              child: Center(
-                child: Text("North Texas University", textAlign: TextAlign.center),
-              ),
+          ),
+          const Divider(),
+           Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Experience',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () {
+                    // TODO: Implement navigation to the edit page or display an inline text field for editing
+                  },
+                ),
+              ],
             ),
-            SizedBox(height: 30.0),
-            Text(
-              'Major:',
-              style: TextStyle(fontSize: 18.0),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'filler text',
+              style: Theme.of(context).textTheme.bodyMedium,
+              textAlign: TextAlign.justify,
             ),
-            Container(
-              margin: EdgeInsets.only(top: 10),
-              height: 50,
-              decoration: BoxDecoration(
-                color: Color(0x9BAA79FF),
-              ),
-              child: Center(
-                child: Text("Computer Science Engineer", textAlign: TextAlign.center),
-              ),
+          ),
+          const Divider(),
+           Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Education',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+                IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () {
+                    // TODO: Implement navigation to the edit page or display an inline text field for editing
+                  },
+                ),
+              ],
             ),
-            SizedBox(height: 30.0),
-            Text(
-              'Email:',
-              style: TextStyle(fontSize: 18.0),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'filler text',
+              style: Theme.of(context).textTheme.bodyMedium,
+              textAlign: TextAlign.justify,
             ),
-            Container(
-              margin: EdgeInsets.only(top: 10),
-              height: 50,
-              decoration: BoxDecoration(
-                color: Color(0x9BAA79FF),
-              ),
-              child: Center(
-                child: Text("xxxxxxx@my.unt.edu", textAlign: TextAlign.center),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

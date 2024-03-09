@@ -60,11 +60,14 @@ class _RegisterPageState extends State<RegisterPage> {
 
 
                 //logo
-                Icon(
-                  Icons.message,
-                  size: 100 ,
-                  color: Colors.grey[800],
+                Container(
+                  height: MediaQuery.of(context).size.height / 3,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/welcome1.png"),
+                    ),
                   ),
+                ),
 
                   const SizedBox(height: 50),
 
