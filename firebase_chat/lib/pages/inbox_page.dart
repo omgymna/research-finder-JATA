@@ -93,18 +93,6 @@ class _InboxPageState extends State<InboxPage> {
               );
             },
           ),
-          /*child: ListTile(
-            title: Text(data['email'],),
-            onTap: (){
-              //pass the clicked user's UID to the chat page
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> ChatPage(
-                receiverUserEmail: data['email'],
-                receiverUserID: data['uid'],
-              ),
-              ),
-              );
-            },
-          ),*/
               ]
         ),
         ),
@@ -116,3 +104,4 @@ class _InboxPageState extends State<InboxPage> {
     }
   }
 }
+
