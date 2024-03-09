@@ -1,292 +1,140 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:research_finder_jata/accountinfo.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  Widget _buildUsernameTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Username',
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color: Colors.white,
-          ),
-        ),
-        SizedBox(height: 5.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Color(0xFFC2BEB4), // Box color
-            borderRadius: BorderRadius.circular(10.0), // Box shape
-          ),
-          height: 60.0,
-          child: TextField(
-            keyboardType: TextInputType.text,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-              hintText: 'Enter your Username',
-              hintStyle: TextStyle(
-                color: Colors.white,
-                fontFamily: 'OpenSans',
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 10.0),
-      ],
-    );
+class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
+  late TabController _tabController;
+  final GlobalKey<FormState> _teacherFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _studentFormKey = GlobalKey<FormState>();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
   }
 
-
-
-  Widget _buildEmailTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Email',
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color: Colors.white,
-          ),
-        ),
-        SizedBox(height: 5.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Color(0xFFC2BEB4), // Box color
-            borderRadius: BorderRadius.circular(10.0), // Box shape
-          ),
-          height: 60.0,
-          child: TextField(
-            keyboardType: TextInputType.emailAddress,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.email,
-                color: Colors.white,
-              ),
-              hintText: 'Enter your Email',
-              hintStyle: TextStyle(
-                color: Colors.white,
-                fontFamily: 'OpenSans',
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 10.0),
-      ],
-    );
+  @override
+  void dispose() {
+    _tabController.dispose();
+    _usernameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 
-  Widget _buildPasswordTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Password',
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color: Colors.white,
-          ),
-        ),
-        SizedBox(height: 5.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Color(0xFFC2BEB4), // Box color
-            borderRadius: BorderRadius.circular(10.0), // Box shape
-          ),
-          height: 60.0,
-          child: TextField(
-            obscureText: true,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.white,
-              ),
-              hintText: 'Enter your Password',
-              hintStyle: TextStyle(
-                color: Colors.white,
-                fontFamily: 'OpenSans',
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 10.0),
-      ],
-    );
-  }
-
-  Widget _buildConfirmPasswordTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Confirm Password',
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color: Colors.white,
-          ),
-        ),
-        SizedBox(height: 5.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Color(0xFFC2BEB4), // Box color
-            borderRadius: BorderRadius.circular(10.0), // Box shape
-          ),
-          height: 60.0,
-          child: TextField(
-            obscureText: true,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.white,
-              ),
-              hintText: 'Confirm Password',
-              hintStyle: TextStyle(
-                color: Colors.white,
-                fontFamily: 'OpenSans',
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 10.0),
-      ],
-    );
-  }
-
-  Widget _buildSignUpBtn() {
+  Widget _buildTextInputField({
+    required TextEditingController controller,
+    required IconData icon,
+    required String hintText,
+    required String? Function(String?) validator,
+    bool isObscure = false,
+  }) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          // Navigate to the Account Info page
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SignUpRolePicker(), // Replace with your Account Info page class
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30.0),
-          ),
-          primary: Color(0xFFC2BEB4), // Button color
-          elevation: 5.0,
-        ).copyWith(
-          padding: MaterialStateProperty.all(EdgeInsets.all(15.0)),
-        ),
-        child: Text(
-          'SIGN UP',
-          style: TextStyle(
-            color: Colors.white,
-            letterSpacing: 1.5,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
+      padding: const EdgeInsets.only(bottom: 10),
+      child: TextFormField(
+        controller: controller,
+        obscureText: isObscure,
+        decoration: InputDecoration(
+          fillColor: Colors.grey[200],
+          filled: true,
+          prefixIcon: Icon(icon),
+          hintText: hintText,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide.none,
           ),
         ),
+        validator: validator,
       ),
     );
   }
 
+  Widget _buildForm(GlobalKey<FormState> formKey, Function() onSubmit) {
+    return Form(
+      key: formKey,
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: <Widget>[
+            _buildTextInputField(
+              controller: _usernameController,
+              icon: Icons.person,
+              hintText: 'Enter your Username',
+              validator: (value) => value!.isEmpty ? 'Username is required' : null,
+            ),
+            _buildTextInputField(
+              controller: _emailController,
+              icon: Icons.email,
+              hintText: 'Enter your Email',
+              validator: (value) => value!.isEmpty ? 'Email is required' : null,
+            ),
+            _buildTextInputField(
+              controller: _passwordController,
+              icon: Icons.lock,
+              hintText: 'Enter your Password',
+              isObscure: true,
+              validator: (value) => value!.length < 8 ? 'Password must be at least 8 characters' : null,
+            ),
+            _buildTextInputField(
+              controller: _confirmPasswordController,
+              icon: Icons.lock_outline,
+              hintText: 'Confirm your Password',
+              isObscure: true,
+              validator: (value) => value != _passwordController.text ? 'Passwords do not match' : null,
+            ),
+            ElevatedButton(
+              onPressed: onSubmit,
+              child: Text('SIGN UP'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                textStyle: TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Color(0xFFA18C74), // Background color
-                ),
-              ),
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 120.0,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'Sign Up',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'OpenSans',
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 30.0),
-                      _buildUsernameTF(),
-                      _buildEmailTF(),
-                      _buildPasswordTF(),
-                      _buildConfirmPasswordTF(),
-                      _buildSignUpBtn(),
-
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+      appBar: AppBar(
+        title: Text('Sign Up'),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: [
+            Tab(text: 'Teacher'),
+            Tab(text: 'Student'),
+          ],
         ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          _buildForm(_teacherFormKey, () {
+            if (_teacherFormKey.currentState!.validate()) {
+              // Perform teacher sign up
+              print('Teacher form is valid');
+            }
+          }),
+          _buildForm(_studentFormKey, () {
+            if (_studentFormKey.currentState!.validate()) {
+              // Perform student sign up
+              print('Student form is valid');
+            }
+          }),
+        ],
       ),
     );
   }
 }
-
-
-
-

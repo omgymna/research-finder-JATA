@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:research_finder_jata/addCourse.dart'; 
+import 'addCourse.dart'; 
 //import 'package:dropdown_search/dropdown_search.dart';
-import 'personalinfo.dart';
 
 
 
@@ -19,7 +18,7 @@ class _SelectUniversityPageState extends State<SelectUniversityPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => AddCoursePage(),
+        builder: (context) => const AddCoursePage(),
       ),
     );
   }
@@ -100,8 +99,8 @@ Widget build(BuildContext context) {
         alignment: Alignment.bottomRight,
         child: FloatingActionButton(
           onPressed: _handleNextButtonClick,
-          backgroundColor: Color(0xFFA18C74),
-          child: Icon(Icons.arrow_forward),
+          backgroundColor: const Color(0xFFA18C74),
+          child: const Icon(Icons.arrow_forward),
         )),
 
 	); 

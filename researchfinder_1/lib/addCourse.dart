@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
-import 'constants.dart';
-import 'homescreen.dart';
+import 'personalinfo.dart';
 
 class AddCoursePage extends StatefulWidget { 
 const AddCoursePage({Key? key}) : super(key: key); 
@@ -17,7 +16,7 @@ class _AddCoursePageState extends State<AddCoursePage>{
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => Homescreen(),
+        builder: (context) => const PersonalInfoPage(),
       ),
     );
   }
@@ -27,13 +26,14 @@ class _AddCoursePageState extends State<AddCoursePage>{
 
   List<String> courses= [];
 
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFA18C74),
-        title: Text(
+        backgroundColor: const Color(0xFFA18C74),
+        title: const Text(
                 "Add your courses below",
                 style: TextStyle(
                   color: Colors.white,
@@ -44,45 +44,45 @@ class _AddCoursePageState extends State<AddCoursePage>{
       ),
       body: 
         Container(
-        decoration: BoxDecoration(color: Colors.white),
+        decoration: const BoxDecoration(color: Colors.white),
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
               alignment: Alignment.center,
 
-              margin: EdgeInsets.only(left:200, right: 200, bottom: 25, top: 200),
+              margin: const EdgeInsets.only(left:200, right: 200, bottom: 25, top: 200),
               decoration: BoxDecoration(
-                color: Color.fromARGB(173, 161, 140, 116),
+                color: const Color.fromARGB(173, 161, 140, 116),
                 borderRadius: BorderRadius.circular(10),
               ),
               
               child: TextFormField(
                 textAlign: TextAlign.center,
-                style: TextStyle( color: Colors.white, fontSize: 30, fontFamily: 'OpenSans'),
+                style: const TextStyle( color: Colors.white, fontSize: 30, fontFamily: 'OpenSans'),
 
               controller: _controller,
 
             )),
             Container
             (
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(10),
+              margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 
 
-                color: Color(0xFF56674A),
+                color: const Color(0xFF56674A),
                 borderRadius: BorderRadius.circular(10),
               ),
 
               child: TextButton(
                 onPressed: () {
                   setState(() {
-                    if(_controller.text.length>0){
+                    if(_controller.text.isNotEmpty){
                       courses.add(_controller.text);
                       _controller.clear();
                     } else{
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         backgroundColor: Color(0xFF56674A),
                         content: Text("Text is Empty, Please Add a Course", style: TextStyle(fontSize: 20, fontFamily: 'OpenSans'),
                         textAlign: TextAlign.center,),
@@ -90,7 +90,7 @@ class _AddCoursePageState extends State<AddCoursePage>{
                     }
                     });
                   },
-                child: Text("Add Course",
+                child: const Text("Add Course",
                     style: TextStyle(
                       fontSize: 25,
                       color: Colors.white,
@@ -101,13 +101,13 @@ class _AddCoursePageState extends State<AddCoursePage>{
             )
             ),
             Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Color.fromARGB(166, 194, 190, 180),
+                color: const Color.fromARGB(166, 194, 190, 180),
                 borderRadius: BorderRadius.circular(5)
               ),
               child:Text(courses.isNotEmpty?courses.toString():"",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.normal,
                     color: Colors.brown,
@@ -121,8 +121,8 @@ class _AddCoursePageState extends State<AddCoursePage>{
         alignment: Alignment.bottomRight,
         child: FloatingActionButton(
           onPressed: _handleNextButtonClick,
-          backgroundColor: Color(0xFFA18C74),
-          child: Icon(Icons.arrow_forward),
+          backgroundColor: const Color(0xFFA18C74),
+          child: const Icon(Icons.arrow_forward),
         )),
     );
   }
