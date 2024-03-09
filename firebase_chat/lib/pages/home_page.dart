@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_chat/pages/chat_page.dart';
+import 'package:firebase_chat/model/search_Pages.dart';
+import 'package:firebase_chat/pages/home.dart';
 import 'package:firebase_chat/pages/inbox_page.dart';
 import 'package:firebase_chat/pages/personal_info_page.dart';
 import 'package:firebase_chat/services/auth/auth_service.dart';
@@ -8,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_chat/main.dart';
 
-import 'account_info_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,17 +29,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   final List<Widget> _pages = [
-    PlaceholderWidget('Home Page'),
-    PlaceholderWidget('Search Page'),
-    InboxPage(),
-    ProfilePage(),
+    const Home(),
+    const SearchPage(),
+    const InboxPage(),
+    const ProfilePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFA18C74),
+        backgroundColor: const Color(0xFFA18C74),
         elevation: 0,
         title: const Text('Home Page'),
         actions: [
@@ -83,20 +83,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-}
-
-class PlaceholderWidget extends StatelessWidget {
-  final String text;
-
-  PlaceholderWidget(this.text);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        text,
-        style: TextStyle(fontSize: 24),
-      ),
-    );
-  }
 }
