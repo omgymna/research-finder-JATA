@@ -1,4 +1,0 @@
-#Tue Nov 07 01:10:37 CST 2023
-base.0=/Users/aishaoyinkansola/Documents/Project/research_finder_jata/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
