@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "663539583459",
+    "project_id": "reseach-finder",
+    "storage_bucket": "reseach-finder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663539583459:android:60fc0aeea1d68b9e46f8d6",
+        "android_client_info": {
+          "package_name": "com.example.capstone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKsLEttvzIabJI2HdHDn-hF04Z_kD8LPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
